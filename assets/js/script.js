@@ -121,6 +121,7 @@ function getParksByState(state) {
       return response.json();
     })
     .then(function (data) {
+      console.log(data);
       for (var i = 0; i < data.data.length; i++) {
         // Empty arrays for phone and emails.
         newPhoneNumbers = [];
@@ -147,7 +148,7 @@ function getParksByState(state) {
           latitude: data.data[i].latitude,        // Park Latitude Coordinate
           longitude: data.data[i].longitude,      // Park Longitude Coordinate
           phoneNumbers: newPhoneNumbers,          // Park Phone Number array
-          emailAddresses: newEmailAddresses       // Park Email Address array
+          emailAddresses: newEmailAddresses,       // Park Email Address array
         };
 
         // Push to parks array.
@@ -190,15 +191,19 @@ var displayParks = function () {
     parkCardHeader.innerHTML = park.fullName;
     parkCardContent.textContent = park.description;
 
+    var parkCardContact = document.createElement("div")
+    parkCardContact.classList.add("contactTop")
+
     // Only if there is a phone number, print
     if (park.phoneNumbers.length > 0) {
       var parkPhoneContainer = document.createElement("div");
       var parkPhone = document.createElement("a");
       parkPhoneContainer.textContent = "Phone Number: "
+      parkPhoneContainer.classList.add("contactInfo");
       parkPhone.setAttribute("href", "tel:" + park.phoneNumbers[0]);
       parkPhone.textContent = formatPhoneNumber(park.phoneNumbers[0]);
       parkPhoneContainer.appendChild(parkPhone);
-      parkCardContent.appendChild(parkPhoneContainer);
+      parkCardContact.appendChild(parkPhoneContainer);
     }
 
     // Only if there is an email address, print
@@ -206,11 +211,25 @@ var displayParks = function () {
       var parkEmail = document.createElement("a");
       var parkEmailContainer = document.createElement("div");
       parkEmailContainer.textContent = "Email Address: "
+      parkEmailContainer.classList.add("contactInfo");
       parkEmail.setAttribute("href", "mailto:" + park.emailAddresses)
       parkEmail.textContent = park.emailAddresses;
       parkEmailContainer.appendChild(parkEmail);
-      parkCardContent.appendChild(parkEmailContainer);
+      parkCardContact.appendChild(parkEmailContainer);
     }
+
+    // Add link to the park
+    var siteLink= document.createElement("a");
+    var siteLinkContainer = document.createElement("div");
+    siteLinkContainer.textContent = "Visit Site: ";
+    siteLinkContainer.classList.add("contactInfo");
+    siteLink.setAttribute("href", park.url);
+    siteLink.setAttribute("target", "_blank");
+    siteLink.textContent = park.fullName;
+    siteLinkContainer.appendChild(siteLink);
+    parkCardContact.appendChild(siteLinkContainer);
+
+    parkCardContent.appendChild(parkCardContact);
 
     favoriteButton.setAttribute("type", "button");
     favoriteButton.setAttribute("style", "margin-top: 10px;");

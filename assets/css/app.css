@@ -132,6 +132,14 @@ h1 {
     font-weight: bold;
 }
 
+.contactInfo {
+    padding-left: 10px;
+}
+
+.contactTop {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 .map-bar {
     color: black;
