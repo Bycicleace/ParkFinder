@@ -213,6 +213,7 @@ var displayParks = function () {
     }
 
     favoriteButton.setAttribute("type", "button");
+    favoriteButton.setAttribute("style", "margin-top: 10px;");
     favoriteButton.textContent = "Add to Favorites";
     parkCardContent.appendChild(favoriteButton);
     parkCard.appendChild(parkCardHeader);

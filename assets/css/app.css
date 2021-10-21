@@ -29,10 +29,9 @@ body {
     background-attachment: fixed;
 }
 
-
-
-.near-you {
-    font-size: 24px;
+.search-box-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -129,7 +128,8 @@ h1 {
 
 .card-section {
     background-color: #8fc1e2;
-    color:#f7f9fb;
+    color:black;
+    font-weight: bold;
 }
 
 
@@ -151,6 +151,7 @@ h1 {
     font-size: 32px;
     background-color: rgba(80,80,100,.5);
 }
+
 
 @media screen and (max-width: 39.9375em) {
 
