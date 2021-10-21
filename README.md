@@ -13,12 +13,12 @@ A site where you can pull up state parks, organized by state. Then, after select
 - To load favorites, select Favorites from the Selection dropdown
 
 ## Authors
-Elliott Kvamme
-Ian Miller
-Adam Tilly
-Mike Horvath
-Carrington Adams
-Tony Busch
+- Elliott Kvamme
+- Ian Miller
+- Adam Tilly
+- Mike Horvath
+- Carrington Adams
+- Tony Busch
 
 ## Contact
 See my GitHub page [here](https://github.com/Bycicleace)
