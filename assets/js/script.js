@@ -244,6 +244,7 @@ stateSelectionEl.addEventListener("click", function (event) {
         i = i + 1
       } else {
         displayParks();
+        document.querySelector(".card-section").click();
         clearInterval(apiCallLoad);
       }
     }, 500);
@@ -267,9 +268,7 @@ document.addEventListener('click', function (e) {
 
 var favoriteParks = []
 document.addEventListener('click',function(event){
-  console.log("clicked");
   if (event.target.classList.contains("favorite-button")){
-    console.log("hello")
     for (var i = 0; i < parksArray.length; i++) {
   
       if (parksArray[i].id == event.target.id) {
@@ -284,9 +283,7 @@ document.addEventListener('click',function(event){
           phoneNumbers: parksArray[i].phoneNumbers,          // Park Phone Number array
           emailAddresses: parksArray[i].emailAddresses      // Park Email Address array
         }
-          console.log(favoritesNew);
           favoriteParks.push(favoritesNew);
-          console.log(favoriteParks);
           localStorage.setItem("favorites",JSON.stringify(favoriteParks));
         }
 
@@ -297,8 +294,12 @@ document.addEventListener('click',function(event){
 function LoadFavorites() {
   favoriteParks = JSON.parse(localStorage.getItem("favorites"));
   if (favoriteParks === null) {
-    favoriteParks = []
+    favoriteParks = [];
+    document.querySelector("#MN").click();
+  } else {
+    document.querySelector("#favorites").click();
   }
 }
+
 
 LoadFavorites();

@@ -88,15 +88,11 @@ ul .menu {
 
 #currentState {
     color: black;
+    font-weight: normal;
 }
 
 #selectedState {
     color: black;
-}
-
-#parkMap {
-    color: black;
-    font-weight: bold;
 }
 
 .menu.dropdown > li.is-dropdown-submenu > a::after {
@@ -138,10 +134,10 @@ h1 {
 
 
 .map-bar {
+    color: black;
     background-color: #303c6c;
     font-weight: 600;
     font-size: 32px;
-    opacity: .8;
 }
 
 .arrow {

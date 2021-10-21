@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,100;1,600&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="assets/css/foundation.css">
     <link rel="stylesheet" href="assets/css/app.css"></link>
-    <title>ParkFinder</title>
+    <title>Park Finder</title>
 </head>
 <body>
     <main> 
@@ -17,16 +17,13 @@
         <div class="title-bar-title">
             <h1>Park Finder</h1>
         </div>
-        <div class="title-bar-right">
-            <h1 class="near-you">Find parks near you!</h1>
-        </div>
     </div>
     <div class="search-box-container columns small-6 large-6"> 
         <ul class="menu dropdown" data-dropdown-menu>
             <li>
                 <a id="menuTitle" href="#">Select a State</a>
                 <ul id="stateList" class="menu">
-                    <li class="state"><a href="#" class="state">Favorites</a></li>
+                    <li class="state"><a href="#" id="favorites" class="state">Favorites</a></li>
                     <li class="state"><a href="#" class="state">Alabama</a></li>
                     <li class="state"><a href="#" class="state">Alaska</a></li>
                     <li class="state"><a href="#" class="state">Arizona</a></li>
@@ -50,7 +47,7 @@
                     <li class="state"><a href="#" class="state">Maryland</a></li>
                     <li class="state"><a href="#" class="state">Massachusetts</a></li>
                     <li class="state"><a href="#" class="state">Michigan</a></li>
-                    <li class="state"><a href="#" class="state">Minnesota</a></li>
+                    <li class="state"><a href="#" id="MN" class="state">Minnesota</a></li>
                     <li class="state"><a href="#" class="state">Mississippi</a></li>
                     <li class="state"><a href="#" class="state">Missouri</a></li>
                     <li class="state"><a href="#" class="state">Montana</a></li>
@@ -86,7 +83,7 @@
         <div class="cell large-6 search-results">
             <div class="top-bar">
                 <span>
-                    <span id="selectedState">Selected State: </span>
+                    <span id="selectedState">State: </span>
                     <span id="currentState" class="current-state"></span>
                 </span>
             </div>
