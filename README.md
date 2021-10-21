@@ -1,17 +1,29 @@
-# TrailFinder
+# Park Finder
 
 ## Description
-The end product is a web application that will search and display a list of national parks that are pinned on a map. On selection of the park, you are presented with information on the trail and its location.
+A site where you can pull up state parks, organized by state. Then, after selecting a park, you can map it out!
 
-## Project Status
-This project is currently being coded. 
+## Usage
+1. Hover over "Select a State"
+2. Select which state you wish to see parks for
+3. Once selected, you are presented with a list of parks.
+4. Click on any park, and a map will generate.
 
-## Contributions
+- To add to favorites, click the "Add to Favorites" button on the park's card
+- To load favorites, select Favorites from the Selection dropdown
 
-Ian Miller, Mike Horvath, Tony Busch, Adam Tilly, Elliot Kvamme, Carrington Adams, 2021
+## Authors
+Elliott Kvamme
+Ian Miller
+Adam Tilly
+Mike Horvath
+Carrington Adams
+Tony Busch
 
-## Notes
-[Free APIs](https://github.com/public-apis/public-apis#environment)
+## Contact
+See my GitHub page [here](https://github.com/Bycicleace)
 
 ## Live Site
-[Live Site Link](https://bycicleace.github.io/TrailFinder/)
+URL: [Park Finder](https://Bycicleace.github.io/ParkFinder/)
+
+![Site Image](assets/img/site.png)
