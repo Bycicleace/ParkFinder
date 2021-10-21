@@ -116,7 +116,7 @@ function updateStateEl(state) {
 function getParksByState(state) {
   parksArray = [];
   updateStateEl(state);
-  fetch(parksURL + "stateCode=" + state + "&" + npsAPIKey)
+  fetch(parksURL + "stateCode=" + stateAbb[state] + "&" + npsAPIKey)
     .then(function (response) {
       return response.json();
     })
