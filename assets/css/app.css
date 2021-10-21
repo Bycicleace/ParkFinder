@@ -64,16 +64,46 @@ ul .menu {
 /* menu */
 
 /* Drop Down menu setting */
-li a {
+.menu li a {
     color: #f7f9fb;
-
 }
 
-.dropdown.menu > li.is-dropdown-submenu-parent > a::after {
+#menuTitle {
+    color: black;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+#menuTitle::after{
+    color: black;
+}
+
+#stateList {
+    margin-left: 16px;
+}
+
+.state:hover {
+    color: black;
+}
+
+#currentState {
+    color: black;
+}
+
+#selectedState {
+    color: black;
+}
+
+#parkMap {
+    color: black;
+    font-weight: bold;
+}
+
+.menu.dropdown > li.is-dropdown-submenu > a::after {
     border-color: #f7f9fb transparent transparent;
 }
 
-.dropdown.menu > li.is-active > a {
+.menu.dropdown > li.is-active > a {
     color:#303c6c;
     
 }
@@ -123,8 +153,7 @@ h1 {
 .top-bar {
     font-weight: 600;
     font-size: 32px;
-    background-color:rgba(0, 0, 0, 0);
-    font-style: italic;
+    background-color: rgba(80,80,100,.5);
 }
 
 @media screen and (max-width: 39.9375em) {
