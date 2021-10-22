@@ -279,19 +279,24 @@ stateSelectionEl.addEventListener("click", function (event) {
     } else {
       getParksByState(targetEl.textContent);
     }
-    i = 0
-    var apiCallLoad = setInterval(function () {
-      if (i > 20) {
-        alert("The request timed out")
-        clearInterval(apiCallLoad);
-      } else if (parksArray.length === 0) {
-        i = i + 1
-      } else {
-        displayParks();
-        document.querySelector(".card-section").click();
-        clearInterval(apiCallLoad);
-      }
-    }, 500);
+    if (targetEl.textContent == "Favorites" && favoriteParks.length == 0) {
+      displayParks();
+    } else {
+      i = 0
+      var apiCallLoad = setInterval(function () {
+        if (i > 20) {
+          alert("The request timed out")
+          clearInterval(apiCallLoad);
+        } else if (parksArray.length === 0) {
+          i = i + 1
+        } else {
+          displayParks();
+          document.querySelector(".card-section").click();
+          clearInterval(apiCallLoad);
+        }
+      }, 500);
+    }
+    
   };
 });
 
