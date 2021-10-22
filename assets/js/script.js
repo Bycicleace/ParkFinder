@@ -193,6 +193,7 @@ var displayParks = function () {
 
     var parkCardContact = document.createElement("div")
     parkCardContact.classList.add("contactTop")
+    parkCardContact.id = park.id;
 
     // Only if there is a phone number, print
     if (park.phoneNumbers.length > 0) {
@@ -200,6 +201,7 @@ var displayParks = function () {
       var parkPhone = document.createElement("a");
       parkPhoneContainer.textContent = "Phone Number: "
       parkPhoneContainer.classList.add("contactInfo");
+      parkPhoneContainer.id = park.id;
       parkPhone.setAttribute("href", "tel:" + park.phoneNumbers[0]);
       parkPhone.textContent = formatPhoneNumber(park.phoneNumbers[0]);
       parkPhoneContainer.appendChild(parkPhone);
@@ -212,6 +214,7 @@ var displayParks = function () {
       var parkEmailContainer = document.createElement("div");
       parkEmailContainer.textContent = "Email Address: "
       parkEmailContainer.classList.add("contactInfo");
+      parkEmailContainer.id = park.id;
       parkEmail.setAttribute("href", "mailto:" + park.emailAddresses)
       parkEmail.textContent = park.emailAddresses;
       parkEmailContainer.appendChild(parkEmail);
@@ -223,6 +226,7 @@ var displayParks = function () {
     var siteLinkContainer = document.createElement("div");
     siteLinkContainer.textContent = "Visit Site: ";
     siteLinkContainer.classList.add("contactInfo");
+    siteLinkContainer.id = park.id;
     siteLink.setAttribute("href", park.url);
     siteLink.setAttribute("target", "_blank");
     siteLink.textContent = park.fullName;
@@ -273,14 +277,14 @@ stateSelectionEl.addEventListener("click", function (event) {
 
 
 document.addEventListener('click', function (e) {
-  if (e.target.className == 'card-section' || e.target.className == 'card-divider') {
+  console.log(e.target.className);
+  if (e.target.className == 'card-section' || e.target.className == 'card-divider' || e.target.className == 'contactInfo') {
+    console.log("Made it");
     for (var i = 0; i < parksArray.length; i++) {
       if (parksArray[i].id == e.target.id) {
         var parkLong = parseFloat(parksArray[i].longitude, 10);
         var parkLat = parseFloat(parksArray[i].latitude, 10);
-
         initMap(parkLat, parkLong);
-        console.log(parkLat, parkLong);
       }
     }
   }
