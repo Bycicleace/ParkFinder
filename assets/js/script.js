@@ -121,7 +121,6 @@ function getParksByState(state) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       for (var i = 0; i < data.data.length; i++) {
         // Empty arrays for phone and emails.
         newPhoneNumbers = [];
@@ -139,6 +138,17 @@ function getParksByState(state) {
           newEmailAddresses.push(data.data[i].contacts.emailAddresses[j].emailAddress);
         }
 
+        // Check if favorite
+        var isFavorite = false;
+        if (favoriteParks.length > 0) {
+          for (var j = 0; j < favoriteParks.length; j++) {
+            if (data.data[i].id == favoriteParks[j].id) {
+              isFavorite = true;
+              j = favoriteParks.length
+            }
+          }
+        }
+
         // Build simplified object.
         var currentPark = {
           id: data.data[i].id,                    // Park ID
@@ -148,7 +158,8 @@ function getParksByState(state) {
           latitude: data.data[i].latitude,        // Park Latitude Coordinate
           longitude: data.data[i].longitude,      // Park Longitude Coordinate
           phoneNumbers: newPhoneNumbers,          // Park Phone Number array
-          emailAddresses: newEmailAddresses,       // Park Email Address array
+          emailAddresses: newEmailAddresses,      // Park Email Address array
+          isFavorite: isFavorite                  // Whether or not on favorites list
         };
 
         // Push to parks array.
@@ -177,10 +188,6 @@ var displayParks = function () {
     var parkCard = document.createElement("div");
     var parkCardHeader = document.createElement("div");
     var parkCardContent = document.createElement("div");
-    var favoriteButton = document.createElement("button");
-    favoriteButton.classList.add("favorite-button");
-    favoriteButton.classList.add("button");
-    favoriteButton.id = park.id
     parkCardCell.className = "cell"
     parkCardCell.id = "state-cell"
     parkCard.className = "card";
@@ -235,10 +242,23 @@ var displayParks = function () {
 
     parkCardContent.appendChild(parkCardContact);
 
+    // Favorite button
+    var favoriteButton = document.createElement("button");
+    favoriteButton.classList.add("button");
+    favoriteButton.id = park.id
     favoriteButton.setAttribute("type", "button");
-    favoriteButton.setAttribute("style", "margin-top: 10px;");
-    favoriteButton.textContent = "Add to Favorites";
+
+    if (park.isFavorite) {
+      favoriteButton.classList.add("remove-favorite");
+      favoriteButton.textContent = "Remove from Favorites";
+    } else {
+      favoriteButton.classList.add("favorite-button");
+      favoriteButton.textContent = "Add to Favorites";
+    }
+    
     parkCardContent.appendChild(favoriteButton);
+    
+    
     parkCard.appendChild(parkCardHeader);
     parkCard.appendChild(parkCardContent);
     parkCardCell.appendChild(parkCard);
@@ -255,7 +275,6 @@ stateSelectionEl.addEventListener("click", function (event) {
     if (targetEl.textContent == "Favorites") {
       updateStateEl("Favorites");
       parksArray = favoriteParks;
-      console.log(parksArray);
     } else {
       getParksByState(targetEl.textContent);
     }
@@ -277,9 +296,7 @@ stateSelectionEl.addEventListener("click", function (event) {
 
 
 document.addEventListener('click', function (e) {
-  console.log(e.target.className);
   if (e.target.className == 'card-section' || e.target.className == 'card-divider' || e.target.className == 'contactInfo') {
-    console.log("Made it");
     for (var i = 0; i < parksArray.length; i++) {
       if (parksArray[i].id == e.target.id) {
         var parkLong = parseFloat(parksArray[i].longitude, 10);
@@ -305,13 +322,33 @@ document.addEventListener('click',function(event){
           latitude: parksArray[i].latitude,        // Park Latitude Coordinate
           longitude: parksArray[i].longitude,      // Park Longitude Coordinate
           phoneNumbers: parksArray[i].phoneNumbers,          // Park Phone Number array
-          emailAddresses: parksArray[i].emailAddresses      // Park Email Address array
+          emailAddresses: parksArray[i].emailAddresses,      // Park Email Address array
+          isFavorite: true
         }
           favoriteParks.push(favoritesNew);
           localStorage.setItem("favorites",JSON.stringify(favoriteParks));
         }
 
     }
+    var favButton = event.target;
+    favButton.classList.remove("favorite-button");
+    favButton.classList.add("remove-favorite");
+    favButton.textContent = "Remove from Favorites";
+  } else if (event.target.classList.contains("remove-favorite")) {
+    for (var i = 0; i < favoriteParks.length; i++) {
+      if (favoriteParks[i].id == event.target.id) {
+        favoriteParks.splice(i,1);
+        localStorage.setItem("favorites", JSON.stringify(favoriteParks));
+      }
+      if (document.getElementById("currentState").textContent == "Favorites") {
+        parksArray = favoriteParks;
+        displayParks();
+      }
+    }
+    var favButton = event.target;
+    favButton.classList.remove("remove-favorite");
+    favButton.classList.add("favorite-button");
+    favButton.textContent = "Add to Favorites";
   }
 })
 

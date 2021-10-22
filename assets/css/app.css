@@ -160,6 +160,14 @@ h1 {
     background-color: rgba(255,255,255,.33);
 }
 
+.remove-favorite {
+    background-color: rgb(128,0,0);
+}
+
+.remove-favorite:hover, .remove-favorite:focus {
+    background-color: rgb(100,0,0);
+}
+
 
 @media screen and (max-width: 39.9375em) {
 
