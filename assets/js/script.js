@@ -333,6 +333,19 @@ document.addEventListener('click',function(event){
           isFavorite: true
         }
           favoriteParks.push(favoritesNew);
+          favoriteParks.sort(function(a, b) {
+            var nameA = a.fullName.toUpperCase();
+            var nameB = b.fullName.toUpperCase();
+
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
+
+            return 0;
+          })
           localStorage.setItem("favorites",JSON.stringify(favoriteParks));
         }
 
