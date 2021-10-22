@@ -168,6 +168,10 @@ h1 {
     background-color: rgb(100,0,0);
 }
 
+.selected-border {
+    border: 3px solid red;
+}
+
 
 @media screen and (max-width: 39.9375em) {
 

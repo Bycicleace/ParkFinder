@@ -191,6 +191,7 @@ var displayParks = function () {
     parkCardCell.className = "cell"
     parkCardCell.id = "state-cell"
     parkCard.className = "card";
+    parkCard.setAttribute("data-park-id", park.id);
     parkCardHeader.id = park.id;
     parkCardContent.id = park.id;
     parkCardHeader.className = "card-divider";
@@ -294,9 +295,15 @@ stateSelectionEl.addEventListener("click", function (event) {
   };
 });
 
-
+var currentSelection = null;
 document.addEventListener('click', function (e) {
   if (e.target.className == 'card-section' || e.target.className == 'card-divider' || e.target.className == 'contactInfo') {
+    if (document.querySelector(".selected-border")) {
+      document.querySelector(".selected-border").classList.remove("selected-border");
+    }
+    var currentSelection = document.querySelector('div[data-park-id="' + e.target.id + '"]');
+    currentSelection.classList.add("selected-border");
+
     for (var i = 0; i < parksArray.length; i++) {
       if (parksArray[i].id == e.target.id) {
         var parkLong = parseFloat(parksArray[i].longitude, 10);
