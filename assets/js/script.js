@@ -354,7 +354,7 @@ document.addEventListener('click',function(event){
 
 function LoadFavorites() {
   favoriteParks = JSON.parse(localStorage.getItem("favorites"));
-  if (favoriteParks === null) {
+  if (favoriteParks === null || favoriteParks.length == 0) {
     favoriteParks = [];
     document.querySelector("#MN").click();
   } else {
